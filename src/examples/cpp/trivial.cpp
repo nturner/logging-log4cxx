@@ -17,21 +17,30 @@
 #include <log4cxx/logstring.h>
 #include <stdlib.h>
 #include <log4cxx/logger.h>
+#include <log4cxx/xml/domconfigurator.h>
 #include <log4cxx/basicconfigurator.h>
 #include <log4cxx/helpers/exception.h>
 #include <log4cxx/ndc.h>
 #include <locale.h>
 
 using namespace log4cxx;
+using namespace log4cxx::xml;
 using namespace log4cxx::helpers;
 
-int main()
+int main(int argc, char **argv)
 {
     setlocale(LC_ALL, "");
     int result = EXIT_SUCCESS;
     try
     {
-                BasicConfigurator::configure();
+                if (argc > 1)
+                {
+                        DOMConfigurator::configure(argv[1]);
+                }
+                else
+                {
+                        BasicConfigurator::configure();
+                }
                 LoggerPtr rootLogger = Logger::getRootLogger();
 
                 NDC::push("trivial context");
