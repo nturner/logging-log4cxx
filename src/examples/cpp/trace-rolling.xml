@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+ <log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+  <!-- test rolling file appender -->
+  <appender name="Rolling" class="org.apache.log4j.rolling.RollingFileAppender">
+     <param name="File" value="rolling-file.log"/>
+    <rollingPolicy class="org.apache.log4j.rolling.TimeBasedRollingPolicy">
+       <param name="fileNamePattern" value="rolling-file.%d{yyyy-MM-dd-HH-mm-ss}.log.gz"/>
+    </rollingPolicy>
+    <triggeringPolicy class="log4cxx.rolling.SizeBasedTriggeringPolicy">
+      <param name="maxFileSize" value="500"/>
+    </triggeringPolicy>
+    <layout class="org.apache.log4j.PatternLayout">
+      <param name="ConversionPattern" value="%d{ISO8601} %-5X{LWPID} %-7p %-20.20c | %m%n"/>
+    </layout>
+  </appender>
+
+   <root>
+      <priority value="DEBUG"/>
+      <appender-ref ref="Rolling"/>
+   </root>
+</log4j:configuration>
