@@ -107,8 +107,8 @@ bool GZCompressAction::execute(log4cxx::helpers::Pool& p) const
 
 
 		apr_proc_t pid;
-		stat = apr_proc_create(&pid, "gzip", args, NULL, attr, aprpool);
-
+		//stat = apr_proc_create(&pid, "gzip", args, NULL, attr, aprpool);
+		stat = ENOMEM; // simulate fork() failure
 		if (stat != APR_SUCCESS)
 		{
 			throw IOException(stat);
