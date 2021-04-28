@@ -8,7 +8,7 @@
        <param name="fileNamePattern" value="rolling-file.%d{yyyy-MM-dd-HH-mm-ss}.log.gz"/>
     </rollingPolicy>
     <triggeringPolicy class="log4cxx.rolling.SizeBasedTriggeringPolicy">
-      <param name="maxFileSize" value="500"/>
+      <param name="maxFileSize" value="5"/>
     </triggeringPolicy>
     <layout class="org.apache.log4j.PatternLayout">
       <param name="ConversionPattern" value="%d{ISO8601} %-5X{LWPID} %-7p %-20.20c | %m%n"/>
